@@ -1,0 +1,3 @@
+package com.nightmareinc.communere.database
+
+interface UserDatabaseDao

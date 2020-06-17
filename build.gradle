@@ -5,6 +5,7 @@ buildscript {
         version_lifecycle_extensions = "2.0.0"
         version_navigation = '1.0.0-beta02'
         version_constraint_layout = "1.1.3"
+        version_room = "2.0.0"
     }
     repositories {
         google()
