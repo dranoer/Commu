@@ -1,4 +1,10 @@
 package com.nightmareinc.communere.signup
 
-class SignupViewModel {
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import com.nightmareinc.communere.database.UserDatabaseDao
+
+class SignupViewModel(
+    val database: UserDatabaseDao,
+    application: Application) : AndroidViewModel(application) {
 }
