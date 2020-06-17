@@ -11,12 +11,12 @@ data class User (
     var userId: Long = 0L,
 
     @ColumnInfo(name = "fullname")
-    val fullname: String,
+    val fullname: String = "user",
 
     @ColumnInfo(name = "email")
-    val email: String,
+    val email: String = "email",
 
     @ColumnInfo(name = "password")
-    val password: String
+    val password: String = "password"
 
 )

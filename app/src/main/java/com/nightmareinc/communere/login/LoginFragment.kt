@@ -1,12 +1,14 @@
 package com.nightmareinc.communere.login
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.nightmareinc.communere.R
 import com.nightmareinc.communere.database.UserDatabase
 import com.nightmareinc.communere.databinding.FragmentLoginBinding
@@ -32,6 +34,17 @@ class LoginFragment : Fragment() {
          */
         binding.loginViewModel = loginViewModel
         binding.lifecycleOwner = this // Binding can observe LiveData's updates
+
+        binding.signupButton.setOnClickListener {
+            Log.i("naz", "worked")
+            this.findNavController().navigate(
+                LoginFragmentDirections.actionLoginFragmentToSignupFragment())
+        }
+
+        binding.loginButton.setOnClickListener {
+            this.findNavController().navigate(
+                LoginFragmentDirections.actionLoginFragmentToMainFragment())
+        }
 
         return binding.root
     }

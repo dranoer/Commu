@@ -1,4 +1,4 @@
-package com.nightmareinc.communere.login
+package com.nightmareinc.communere
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

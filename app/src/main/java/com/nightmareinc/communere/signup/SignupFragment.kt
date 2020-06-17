@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.nightmareinc.communere.R
 import com.nightmareinc.communere.database.UserDatabase
 import com.nightmareinc.communere.databinding.FragmentSignupBinding
@@ -30,6 +31,11 @@ class SignupFragment : Fragment() {
 
         binding.signupViewModel = signupViewModel
         binding.lifecycleOwner = this
+
+        binding.newSignupButton.setOnClickListener {
+            this.findNavController().navigate(
+                SignupFragmentDirections.actionSignupFragmentToMainFragment())
+        }
 
         return binding.root
     }

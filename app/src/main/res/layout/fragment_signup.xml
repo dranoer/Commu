@@ -35,8 +35,7 @@
             android:hint="@string/full_name_hint"
             android:textSize="@dimen/text_16"
             app:layout_constraintStart_toStartOf="@+id/fullname_title"
-            app:layout_constraintTop_toBottomOf="@id/fullname_title"
-            />
+            app:layout_constraintTop_toBottomOf="@id/fullname_title" />
 
         <TextView
             android:id="@+id/email_title"
@@ -60,8 +59,7 @@
             android:hint="@string/email_username_hint"
             android:textSize="@dimen/text_16"
             app:layout_constraintStart_toStartOf="@+id/email_title"
-            app:layout_constraintTop_toBottomOf="@id/email_title"
-            />
+            app:layout_constraintTop_toBottomOf="@id/email_title" />
 
         <TextView
             android:id="@+id/password_title"
@@ -74,8 +72,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/email_text"
-            app:layout_constraintTop_toBottomOf="@id/email_text"
-            />
+            app:layout_constraintTop_toBottomOf="@id/email_text" />
 
         <EditText
             android:id="@+id/password_text"
@@ -86,8 +83,7 @@
             android:hint="@string/password_hint"
             android:textSize="@dimen/text_16"
             app:layout_constraintStart_toStartOf="@+id/password_title"
-            app:layout_constraintTop_toBottomOf="@id/password_title"
-            />
+            app:layout_constraintTop_toBottomOf="@id/password_title" />
 
         <TextView
             android:id="@+id/confirm_password_title"
@@ -98,8 +94,7 @@
             android:layout_marginEnd="@dimen/margin_60"
             android:text="@string/confirm_password"
             app:layout_constraintStart_toStartOf="@+id/password_text"
-            app:layout_constraintTop_toBottomOf="@id/password_text"
-            />
+            app:layout_constraintTop_toBottomOf="@id/password_text" />
 
         <EditText
             android:id="@+id/confirm_password_text"
@@ -110,11 +105,10 @@
             android:hint="@string/confirm_password_hint"
             android:textSize="@dimen/text_16"
             app:layout_constraintStart_toStartOf="@+id/confirm_password_title"
-            app:layout_constraintTop_toBottomOf="@id/confirm_password_title"
-            />
+            app:layout_constraintTop_toBottomOf="@id/confirm_password_title" />
 
         <Button
-            android:id="@+id/signup_button"
+            android:id="@+id/new_signup_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_60"
@@ -122,8 +116,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/confirm_password_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/confirm_password_text"
-            />
+            app:layout_constraintTop_toBottomOf="@id/confirm_password_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

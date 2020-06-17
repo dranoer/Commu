@@ -3,20 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/login_fragment">
     <fragment
-        android:id="@+id/loginFragment"
+        android:id="@+id/login_fragment"
         android:name="com.nightmareinc.communere.login.LoginFragment"
-        android:label="login"
+        android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
 
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
-            app:destination="@id/signupFragment" />
+            app:destination="@id/signup_fragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/main_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/signupFragment"
+        android:id="@+id/signup_fragment"
         android:name="com.nightmareinc.communere.signup.SignupFragment"
-        android:label="signup">
+        android:label="SignupFragment">
+        <action
+            android:id="@+id/action_signupFragment_to_mainFragment"
+            app:destination="@id/main_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/main_fragment"
+        android:name="com.nightmareinc.communere.main.MainFragment"
+        android:label="MainFragment">
     </fragment>
 </navigation>
