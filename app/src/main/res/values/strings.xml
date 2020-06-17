@@ -10,8 +10,12 @@
     <string name="login">Login</string>
 
     <string name="full_name">Full Name:</string>
+    <string name="full_name_hint">Enter ur full name</string>
     <string name="email_username">Email/Username:</string>
+    <string name="email_username_hint">Enter ur email</string>
     <string name="confirm_password">Confirm Password:</string>
+    <string name="confirm_password_hint">confirm ur password</string>
     <string name="image">Image:</string>
+
 
 </resources>
