@@ -7,6 +7,7 @@ import com.nightmareinc.communere.database.UserDatabaseDao
 import java.lang.IllegalArgumentException
 
 class MainViewModelFactory (
+    private val role: Boolean,
     private val dataSource: UserDatabaseDao,
     private val application: Application
 ) : ViewModelProvider.Factory {
@@ -14,7 +15,7 @@ class MainViewModelFactory (
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            return MainViewModel(dataSource, application) as T
+            return MainViewModel(role, dataSource, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

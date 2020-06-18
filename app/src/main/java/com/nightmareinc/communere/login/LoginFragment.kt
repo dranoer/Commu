@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.nightmareinc.communere.Constant
 import com.nightmareinc.communere.R
 import com.nightmareinc.communere.database.UserDatabase
 import com.nightmareinc.communere.databinding.FragmentLoginBinding
@@ -42,8 +43,18 @@ class LoginFragment : Fragment() {
         }
 
         binding.loginButton.setOnClickListener {
-            this.findNavController().navigate(
-                LoginFragmentDirections.actionLoginFragmentToMainFragment())
+
+            val constants = Constant()
+            // Admin Login
+            if (binding.usernameText.text.toString() == constants.ADMIN_USER
+                && binding.passwordText.text.toString() == constants.ADMIN_PASSWORD) {
+                this.findNavController().navigate(
+                    LoginFragmentDirections.actionLoginFragmentToMainFragment(true))
+            } else { // User Login
+                this.findNavController().navigate(
+                    LoginFragmentDirections.actionLoginFragmentToMainFragment(false))
+            }
+
         }
 
         return binding.root

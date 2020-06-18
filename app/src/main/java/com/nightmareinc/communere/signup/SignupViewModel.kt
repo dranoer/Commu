@@ -2,6 +2,7 @@ package com.nightmareinc.communere.signup
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.nightmareinc.communere.database.User
 import com.nightmareinc.communere.database.UserDatabaseDao
@@ -21,15 +22,15 @@ class SignupViewModel(
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private var user = MutableLiveData<User?>()
 
-    /*// Navigating after Signup --->
-    private val _navigateToMainScreen = MutableLiveData<User>()
-    val navigateToMainScreen: LiveData<User>
+    // Navigating after Signup --->
+    /*private val _navigateToMainScreen = MutableLiveData<Long>()
+    val navigateToMainScreen: LiveData<Long>
         get() = _navigateToMainScreen
 
     fun doneNavigating() {
         _navigateToMainScreen.value = null
-    }
-    // <---*/
+    }*/
+    // <---
 
     // Add new user --->
     private suspend fun insert(user: User) {
@@ -38,9 +39,13 @@ class SignupViewModel(
         }
     }
 
-    fun onAddUser() {
+    fun onAddUser(name: String, email: String, password: String) {
         uiScope.launch {
             val newUser = User()
+            newUser.fullname = name
+            newUser.email = email
+            newUser.password = password
+
             insert(newUser)
         }
     }

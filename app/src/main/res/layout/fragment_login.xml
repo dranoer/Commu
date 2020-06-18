@@ -56,7 +56,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberPassword"
             android:hint="@string/password_hint"
             android:textSize="@dimen/text_16"
             app:layout_constraintStart_toStartOf="@+id/password_title"

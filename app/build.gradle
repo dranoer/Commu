@@ -55,4 +55,5 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_coroutine"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_coroutine"
 
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 }

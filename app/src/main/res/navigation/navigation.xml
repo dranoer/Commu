@@ -29,5 +29,8 @@
         android:id="@+id/main_fragment"
         android:name="com.nightmareinc.communere.main.MainFragment"
         android:label="MainFragment">
+        <argument
+            android:name="role"
+            app:argType="boolean" />
     </fragment>
 </navigation>

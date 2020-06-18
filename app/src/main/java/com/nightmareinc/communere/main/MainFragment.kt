@@ -1,6 +1,7 @@
 package com.nightmareinc.communere.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,25 +21,18 @@ class MainFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
+        val arguments = MainFragmentArgs.fromBundle(arguments!!)
+
         val dataSource = UserDatabase.getInstance(application).userDatabaseDao
 
-        val viewModelFactory = MainViewModelFactory(dataSource, application)
+        val viewModelFactory = MainViewModelFactory(arguments.role, dataSource, application)
 
         val mainViewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
-
 
         binding.mainViewModel = mainViewModel
         binding.lifecycleOwner = this
 
-        /*signupViewModel.navigateToMainScreen.observe(this, Observer {
-            user ->
-            user?.let {
-                this.findNavController().navigate(
-                    SignupFragmentDirections
-
-                )
-            }
-        })*/
+        binding.user.text = mainViewModel.role.toString()
 
         return binding.root
     }
