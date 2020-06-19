@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="mainViewModel"
-            type="com.nightmareinc.communere.main.MainViewModel" />
+            name="userListViewModel"
+            type="com.nightmareinc.communere.userlist.UserListViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

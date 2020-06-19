@@ -1,19 +1,19 @@
-package com.nightmareinc.communere.main
+package com.nightmareinc.communere.userlist
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.nightmareinc.communere.database.User
 import com.nightmareinc.communere.database.UserDatabaseDao
 import kotlinx.coroutines.*
 
-class MainViewModel(
-    val role: Boolean,
-    val database: UserDatabaseDao,
-    application: Application) : AndroidViewModel(application) {
+class UserListViewModel(
+    val database: UserDatabaseDao) : ViewModel() {
 
     private val vieModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + vieModelJob)
+
+    lateinit var userList: LiveData<List<User>>
 
     // Get logged user data --->
     /*private suspend fun getUser(): User {
@@ -22,10 +22,22 @@ class MainViewModel(
         }
     }*/
 
+    private suspend fun getAllUsers(){
+         withContext(Dispatchers.IO) {
+            database.getAllUsers()
+        }
+    }
+
     fun checkRole(role: Boolean) {
         uiScope.launch {
             if (role == true) {
                 Log.i("nightmare", "admin login")
+//                val users = getAllUsers()
+                /*userList = Transformations.map(getAllUsers()) {
+                    user ->
+
+                }*/
+
             } else {
 //                getUser()
             }

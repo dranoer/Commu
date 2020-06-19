@@ -1,4 +1,6 @@
 package com.nightmareinc.communere
 
-class Event {
+open class Event {
+
+
 }

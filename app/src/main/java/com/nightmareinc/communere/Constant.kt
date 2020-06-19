@@ -2,7 +2,8 @@ package com.nightmareinc.communere
 
 class Constant {
 
-    val ADMIN_USER = "admin"
-    val ADMIN_PASSWORD = "admin"
-
+    companion object {
+        val ADMIN_USER = "admin"
+        val ADMIN_PASSWORD = "admin"
+    }
 }

@@ -10,7 +10,7 @@ import androidx.room.Update
 interface UserDatabaseDao {
 
     @Insert
-    fun insert(user: User)
+    fun insert(user: User): Long
 
     @Update
     fun update(user: User)
