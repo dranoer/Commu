@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.nightmareinc.communere.UserEvent
 import com.nightmareinc.communere.database.User
 import com.nightmareinc.communere.database.UserDatabaseDao
+import com.nightmareinc.communere.util.SingleLiveData
 import kotlinx.coroutines.*
 
 class UserDetailViewModel(
@@ -33,7 +34,20 @@ class UserDetailViewModel(
         }
     }
 
+    // Delete user
+    val navigateToSignup = SingleLiveData.SingleLiveEvent<String>()
+    private suspend fun delete() {
+        return withContext(Dispatchers.IO) {
+            database.clear()
+        }
+    }
 
+    fun deleteUser() {
+        uiScope.launch {
+            delete()
+            navigateToSignup.value = "signup"
+        }
+    }
 
     override fun onCleared() {
         super.onCleared()

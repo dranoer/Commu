@@ -27,7 +27,6 @@ class SignupViewModel(
 
     val navigateToUserDetail = SingleLiveData.SingleLiveEvent<UserEvent>()
     fun onSignupButtonClick(name: String, email: String, password: String) {
-
         uiScope.launch {
             val newUser = User()
             newUser.fullname = name
@@ -36,7 +35,6 @@ class SignupViewModel(
 
             val id = insert(newUser)
             navigateToUserDetail.value = UserEvent(1, id)
-
         }
     }
 

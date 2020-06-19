@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.nightmareinc.communere.R
 import com.nightmareinc.communere.database.UserDatabase
 import com.nightmareinc.communere.databinding.FragmentUserDetailBinding
@@ -36,9 +37,20 @@ class UserDetailFragment : Fragment() {
         binding.userDetailViewModel = userDetailViewModel
         binding.lifecycleOwner = this
 
-        // Get Current User details
+        // Get current user details
         userDetailViewModel.viewStateLiveData.observe(this, Observer {
             render(it)
+        })
+
+        // Delete current user
+        binding.deleteButton.setOnClickListener {
+            userDetailViewModel.deleteUser()
+        }
+
+        userDetailViewModel.navigateToSignup.observe(this, Observer {
+            this.findNavController().navigate(
+                UserDetailFragmentDirections.actionUserDetailFragmentToSignupFragment()
+            )
         })
 
 
