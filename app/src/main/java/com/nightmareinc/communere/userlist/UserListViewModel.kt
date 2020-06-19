@@ -2,12 +2,16 @@ package com.nightmareinc.communere.userlist
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.nightmareinc.communere.UserEvent
 import com.nightmareinc.communere.database.User
 import com.nightmareinc.communere.database.UserDatabaseDao
+import com.nightmareinc.communere.util.SingleLiveData
 import kotlinx.coroutines.*
 
 class UserListViewModel(
+    val userEvent: UserEvent,
     val database: UserDatabaseDao) : ViewModel() {
 
     private val vieModelJob = Job()
@@ -15,34 +19,18 @@ class UserListViewModel(
 
     lateinit var userList: LiveData<List<User>>
 
-    // Get logged user data --->
-    /*private suspend fun getUser(): User {
-        return withContext(Dispatchers.IO) {
-            database.get(userId)
-        }
-    }*/
-
     private suspend fun getAllUsers(){
          withContext(Dispatchers.IO) {
             database.getAllUsers()
         }
     }
 
-    fun checkRole(role: Boolean) {
-        uiScope.launch {
-            if (role == true) {
-                Log.i("nightmare", "admin login")
-//                val users = getAllUsers()
-                /*userList = Transformations.map(getAllUsers()) {
-                    user ->
+    ///
+//    private val _navigateToDetail = MutableLiveData<Long>()
+    val navigateToUserDetail = SingleLiveData.SingleLiveEvent<UserEvent>()
 
-                }*/
-
-            } else {
-//                getUser()
-            }
-        }
+    fun onUserClicked(id: Long) {
+        navigateToUserDetail.value = UserEvent(0, id)
     }
-    // <---
 
 }
