@@ -16,9 +16,11 @@ import com.nightmareinc.communere.databinding.FragmentUserListBinding
 
 class UserListFragment : Fragment() {
 
+    lateinit var binding: FragmentUserListBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val binding: FragmentUserListBinding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_user_list, container, false)
 
         val application = requireNotNull(this.activity).application
@@ -42,6 +44,17 @@ class UserListFragment : Fragment() {
         })
         binding.userList.adapter = adapter
 
+        // Get user list
+//        userListViewModel.viewStateLiveData.observe(this, Observer {
+//            render(it)
+//        })
+
+        userListViewModel.users.observe(this, Observer {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
+
         userListViewModel.navigateToUserDetail.observe(this, Observer { user ->
             user?.let {
                 this.findNavController().navigate(
@@ -51,5 +64,20 @@ class UserListFragment : Fragment() {
 
         return binding.root
     }
+
+    /*fun render(userDetailViewState: UserDetailViewState) {
+
+//        binding..text = userDetailViewState.user.fullname
+        binding.usernameText.setText(userDetailViewState.user.fullname)
+        binding.passwordText.setText(userDetailViewState.user.email)
+
+        if (userDetailViewState.isAdmin) {
+            binding.deleteButton.visibility = View.GONE
+            binding.updateButton.visibility = View.GONE
+        } else {
+            binding.deleteButton.visibility = View.VISIBLE
+            binding.updateButton.visibility = View.VISIBLE
+        }
+    }*/
 
 }

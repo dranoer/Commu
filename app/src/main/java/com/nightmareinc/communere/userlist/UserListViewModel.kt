@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.nightmareinc.communere.UserEvent
 import com.nightmareinc.communere.database.User
 import com.nightmareinc.communere.database.UserDatabaseDao
+import com.nightmareinc.communere.userdetail.UserDetailViewState
 import com.nightmareinc.communere.util.SingleLiveData
 import kotlinx.coroutines.*
 
@@ -16,8 +17,18 @@ class UserListViewModel(
 
     private val vieModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + vieModelJob)
+    val viewStateLiveData = MutableLiveData<UserDetailViewState>()
+    val users = database.getAllUsers()
 
-    lateinit var userList: LiveData<List<User>>
+//    lateinit var userList: LiveData<List<User>>
+
+    /*init {
+        uiScope.launch {
+            var userList = getAllUsers()
+            val state = UserDetailViewState(user, userEvent.role == 1)
+            viewStateLiveData.value = state
+        }
+    }*/
 
     private suspend fun getAllUsers(){
          withContext(Dispatchers.IO) {
