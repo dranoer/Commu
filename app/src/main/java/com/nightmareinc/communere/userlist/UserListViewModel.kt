@@ -3,14 +3,15 @@ package com.nightmareinc.communere.userlist
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.nightmareinc.communere.UserEvent
+import com.nightmareinc.communere.Role
+import com.nightmareinc.communere.UserAuthInfo
 import com.nightmareinc.communere.database.User
 import com.nightmareinc.communere.repository.UserRepository
 import com.nightmareinc.communere.userdetail.UserDetailViewState
 import com.nightmareinc.communere.util.SingleLiveData
 import kotlinx.coroutines.*
 
-class UserListViewModel(val userEvent: UserEvent,
+class UserListViewModel(val userAuthInfo: UserAuthInfo,
                         var userRepository: UserRepository) : ViewModel() {
 
     private val vieModelJob = Job()
@@ -22,13 +23,13 @@ class UserListViewModel(val userEvent: UserEvent,
 //    lateinit var userList: LiveData<List<User>>
 
     init {
-        uiScope.launch {
+//        uiScope.launch {
 //            var userList = userRepository.getAllUsers()
             usersLiveData = userRepository.getAllUsers()
 
 //            val state = UserDetailViewState(user, userEvent.role == 1)
 //            viewStateLiveData.value = state
-        }
+//        }
     }
 
     /*private suspend fun getAllUsers(){
@@ -39,10 +40,10 @@ class UserListViewModel(val userEvent: UserEvent,
 
     ///
 //    private val _navigateToDetail = MutableLiveData<Long>()
-    val navigateToUserDetail = SingleLiveData.SingleLiveEvent<UserEvent>()
+    val navigateToUserDetail = SingleLiveData.SingleLiveEvent<UserAuthInfo>()
 
     fun onUserClicked(id: Long) {
-        navigateToUserDetail.value = UserEvent(0, id)
+        navigateToUserDetail.value = UserAuthInfo(Role.ADMIN, id)
     }
 
 }

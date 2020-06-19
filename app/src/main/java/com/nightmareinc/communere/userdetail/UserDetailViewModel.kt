@@ -1,17 +1,14 @@
 package com.nightmareinc.communere.userdetail
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.nightmareinc.communere.UserEvent
-import com.nightmareinc.communere.database.User
-import com.nightmareinc.communere.database.UserDatabaseDao
+import com.nightmareinc.communere.Role
+import com.nightmareinc.communere.UserAuthInfo
 import com.nightmareinc.communere.repository.UserRepository
 import com.nightmareinc.communere.util.SingleLiveData
 import kotlinx.coroutines.*
 
-class UserDetailViewModel(val userEvent: UserEvent,
+class UserDetailViewModel(val userAuthInfo: UserAuthInfo,
                           var userRepository: UserRepository) : ViewModel() {
 
     private var viewModelJob = Job()
@@ -22,8 +19,8 @@ class UserDetailViewModel(val userEvent: UserEvent,
     init {
         uiScope.launch {
 //            val user = getUser()
-            val user = userRepository.getUser(userEvent.id)
-            val state = UserDetailViewState(user, userEvent.role == 0)
+            val user = userRepository.getUser(userAuthInfo.id)
+            val state = UserDetailViewState(user, userAuthInfo.role == Role.ADMIN)
             viewStateLiveData.value = state
         }
     }

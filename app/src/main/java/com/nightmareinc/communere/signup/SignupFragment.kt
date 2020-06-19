@@ -9,14 +9,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.amitshekhar.DebugDB
 import com.nightmareinc.communere.R
-import com.nightmareinc.communere.UserEvent
 import com.nightmareinc.communere.database.UserDatabase
 import com.nightmareinc.communere.databinding.FragmentSignupBinding
-import com.nightmareinc.communere.login.LoginFragmentDirections
 import com.nightmareinc.communere.repository.UserRepository
 import kotlinx.android.synthetic.main.fragment_signup.*
 

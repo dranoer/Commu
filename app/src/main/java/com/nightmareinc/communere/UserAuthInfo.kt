@@ -3,18 +3,17 @@ package com.nightmareinc.communere
 import android.os.Parcel
 import android.os.Parcelable
 
-data class UserEvent (
-    val role: Int,
+data class UserAuthInfo (
+    val role: Role,
     val id: Long
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readInt(),
+        TODO("role"),
         parcel.readLong()
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(role)
         parcel.writeLong(id)
     }
 
@@ -22,12 +21,12 @@ data class UserEvent (
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<UserEvent> {
-        override fun createFromParcel(parcel: Parcel): UserEvent {
-            return UserEvent(parcel)
+    companion object CREATOR : Parcelable.Creator<UserAuthInfo> {
+        override fun createFromParcel(parcel: Parcel): UserAuthInfo {
+            return UserAuthInfo(parcel)
         }
 
-        override fun newArray(size: Int): Array<UserEvent?> {
+        override fun newArray(size: Int): Array<UserAuthInfo?> {
             return arrayOfNulls(size)
         }
     }

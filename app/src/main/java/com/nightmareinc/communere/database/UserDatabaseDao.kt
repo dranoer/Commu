@@ -25,6 +25,6 @@ interface UserDatabaseDao {
     suspend fun clear()
 
     @Query("SELECT * FROM user_table ORDER BY userId DESC")
-    suspend fun getAllUsers(): LiveData<List<User>>
+    fun getAllUsers(): LiveData<List<User>>
 
 }

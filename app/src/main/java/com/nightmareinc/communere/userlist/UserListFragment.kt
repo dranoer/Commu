@@ -30,7 +30,7 @@ class UserListFragment : Fragment() {
 
         val dataSource = UserDatabase.getInstance(application).userDatabaseDao
 
-        val viewModelFactory = UserListViewModelFactory(arguments.userEvent, UserRepository(dataSource))
+        val viewModelFactory = UserListViewModelFactory(arguments.userAuthInfo, UserRepository(dataSource))
 
         val userListViewModel = ViewModelProviders.of(this, viewModelFactory).get(UserListViewModel::class.java)
 

@@ -1,29 +1,29 @@
 package com.nightmareinc.communere.repository
 
-import android.accounts.AuthenticatorException
 import com.nightmareinc.communere.Constant
-import com.nightmareinc.communere.UserEvent
+import com.nightmareinc.communere.Role
+import com.nightmareinc.communere.UserAuthInfo
 import com.nightmareinc.communere.database.User
 import com.nightmareinc.communere.database.UserDatabaseDao
 
 class UserRepository(val database: UserDatabaseDao) {
 
-    suspend fun login(username: String, password: String) : UserEvent {
+    suspend fun login(username: String, password: String) : UserAuthInfo {
         if (username == Constant.ADMIN_USER && password == Constant.ADMIN_PASSWORD) {
-            return UserEvent(0, -1)
+            return UserAuthInfo(Role.ADMIN, -1)
         }
 
         val user = database.checkCredential(username, password)
         if (user != null) {
-            return UserEvent(1, user.userId)
+            return UserAuthInfo(Role.USER, user.userId)
         }
 
         throw AuthenticateFailedException()
     }
 
-    suspend fun signUp(user: User) : UserEvent {
+    suspend fun signUp(user: User) : UserAuthInfo {
         val userId = database.insert(user)
-        return UserEvent(1, userId)
+        return UserAuthInfo(Role.USER, userId)
     }
 
     suspend fun getUser(userId: Long): User {
@@ -35,6 +35,6 @@ class UserRepository(val database: UserDatabaseDao) {
         database.clear()
     }
 
-    suspend fun getAllUsers() = database.getAllUsers()
+    fun getAllUsers() = database.getAllUsers()
 
 }
