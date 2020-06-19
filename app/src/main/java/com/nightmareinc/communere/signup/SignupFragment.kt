@@ -44,7 +44,9 @@ class SignupFragment : Fragment() {
         }
 
         signupViewModel.navigateToUserDetail.observe(this, Observer {
-            SignupFragmentDirections.actionSignupFragmentToMainFragment(it)
+            this.findNavController().navigate(
+                SignupFragmentDirections.actionSignupFragmentToMainFragment(it)
+            )
         })
 
 

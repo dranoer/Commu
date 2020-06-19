@@ -2,47 +2,41 @@ package com.nightmareinc.communere.userdetail
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.nightmareinc.communere.UserEvent
 import com.nightmareinc.communere.database.User
 import com.nightmareinc.communere.database.UserDatabaseDao
 import kotlinx.coroutines.*
 
 class UserDetailViewModel(
+    val userEvent: UserEvent,
     val database: UserDatabaseDao) : ViewModel() {
 
-    private val vieModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + vieModelJob)
+    private var viewModelJob = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    lateinit var userList: LiveData<List<User>>
+    val viewStateLiveData = MutableLiveData<UserDetailViewState>()
+
+    init {
+        uiScope.launch {
+            val user = getUser()
+            val state = UserDetailViewState(user, userEvent.role == 0)
+            viewStateLiveData.value = state
+        }
+    }
 
     // Get logged user data --->
-    /*private suspend fun getUser(): User {
+    private suspend fun getUser(): User {
         return withContext(Dispatchers.IO) {
-            database.get(userId)
-        }
-    }*/
-
-    private suspend fun getAllUsers(){
-         withContext(Dispatchers.IO) {
-            database.getAllUsers()
+            database.get(userEvent.id)
         }
     }
 
-    fun checkRole(role: Boolean) {
-        uiScope.launch {
-            if (role == true) {
-                Log.i("nightmare", "admin login")
-//                val users = getAllUsers()
-                /*userList = Transformations.map(getAllUsers()) {
-                    user ->
 
-                }*/
 
-            } else {
-//                getUser()
-            }
-        }
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
-    // <---
-
 }

@@ -13,7 +13,7 @@ class UserDetailViewModelFactory (
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(UserDetailViewModel::class.java)) {
-            return UserDetailViewModel(dataSource) as T
+            return UserDetailViewModel(userEvent, dataSource) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

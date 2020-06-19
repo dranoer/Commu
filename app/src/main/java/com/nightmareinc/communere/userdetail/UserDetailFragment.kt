@@ -4,18 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nightmareinc.communere.R
 import com.nightmareinc.communere.database.UserDatabase
 import com.nightmareinc.communere.databinding.FragmentUserDetailBinding
+import com.nightmareinc.communere.signup.SignupFragmentDirections
 
 class UserDetailFragment : Fragment() {
 
+    lateinit var binding: FragmentUserDetailBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val binding: FragmentUserDetailBinding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_user_detail, container, false)
 
         val application = requireNotNull(this.activity).application
@@ -31,7 +36,27 @@ class UserDetailFragment : Fragment() {
         binding.userDetailViewModel = userDetailViewModel
         binding.lifecycleOwner = this
 
+        // Get Current User details
+        userDetailViewModel.viewStateLiveData.observe(this, Observer {
+            render(it)
+        })
+
+
         return binding.root
+    }
+
+    fun render(userDetailViewState: UserDetailViewState) {
+        binding.userFullName.text = userDetailViewState.user.fullname
+        binding.usernameText.setText(userDetailViewState.user.fullname)
+        binding.passwordText.setText(userDetailViewState.user.email)
+
+        if (userDetailViewState.isAdmin) {
+            binding.deleteButton.visibility = View.GONE
+            binding.updateButton.visibility = View.GONE
+        } else {
+            binding.deleteButton.visibility = View.VISIBLE
+            binding.updateButton.visibility = View.VISIBLE
+        }
     }
 
 }

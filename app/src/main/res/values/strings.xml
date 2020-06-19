@@ -17,5 +17,9 @@
     <string name="confirm_password_hint">confirm ur password</string>
     <string name="image">Image:</string>
 
+    <!--Main-->
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
+
 
 </resources>

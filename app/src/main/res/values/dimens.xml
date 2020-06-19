@@ -11,4 +11,8 @@
     <!--Test Sizes-->
     <dimen name="text_12">12sp</dimen>
     <dimen name="text_16">16sp</dimen>
+
+    <!--Image Sizes-->
+    <dimen name="size_70">70dp</dimen>
+
 </resources>
