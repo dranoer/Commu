@@ -1,19 +1,17 @@
 package com.nightmareinc.communere.signup
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.nightmareinc.communere.Constant
 import com.nightmareinc.communere.UserEvent
 import com.nightmareinc.communere.database.User
-import com.nightmareinc.communere.database.UserDatabaseDao
+import com.nightmareinc.communere.repository.UserRepository
 import com.nightmareinc.communere.util.SingleLiveData
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
-class SignupViewModel(
-    val database: UserDatabaseDao) : ViewModel() {
+class SignupViewModel (var userRepository: UserRepository) : ViewModel() {
 
     private var viewModelJob = Job()
 
@@ -33,17 +31,9 @@ class SignupViewModel(
             newUser.email = email
             newUser.password = password
 
-            val id = insert(newUser)
-            navigateToUserDetail.value = UserEvent(1, id)
+            val userEvent = userRepository.signUp(newUser)
+            navigateToUserDetail.value = userEvent
         }
     }
-
-    // Add new user --->
-    private suspend fun insert(user: User) = withContext(Dispatchers.IO) {
-            return@withContext database.insert(user)
-    }
-
-
-    // <---
 
 }

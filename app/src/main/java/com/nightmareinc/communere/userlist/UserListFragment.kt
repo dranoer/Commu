@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.nightmareinc.communere.R
 import com.nightmareinc.communere.database.UserDatabase
 import com.nightmareinc.communere.databinding.FragmentUserListBinding
+import com.nightmareinc.communere.repository.UserRepository
 
 class UserListFragment : Fragment() {
 
@@ -29,7 +30,7 @@ class UserListFragment : Fragment() {
 
         val dataSource = UserDatabase.getInstance(application).userDatabaseDao
 
-        val viewModelFactory = UserListViewModelFactory(arguments.userEvent, dataSource)
+        val viewModelFactory = UserListViewModelFactory(arguments.userEvent, UserRepository(dataSource))
 
         val userListViewModel = ViewModelProviders.of(this, viewModelFactory).get(UserListViewModel::class.java)
 
@@ -49,7 +50,7 @@ class UserListFragment : Fragment() {
 //            render(it)
 //        })
 
-        userListViewModel.users.observe(this, Observer {
+        userListViewModel.usersLiveData.observe(this, Observer {
             it?.let {
                 adapter.submitList(it)
             }

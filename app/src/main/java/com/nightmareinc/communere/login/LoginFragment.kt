@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.nightmareinc.communere.R
 import com.nightmareinc.communere.database.UserDatabase
 import com.nightmareinc.communere.databinding.FragmentLoginBinding
+import com.nightmareinc.communere.repository.UserRepository
 
 class LoginFragment : Fragment() {
 
@@ -25,7 +26,7 @@ class LoginFragment : Fragment() {
 
         val dataSource = UserDatabase.getInstance(application).userDatabaseDao
 
-        val viewModelFactory = LoginViewModelFactory(dataSource)
+        val viewModelFactory = LoginViewModelFactory(UserRepository(dataSource))
 
         val loginViewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
 

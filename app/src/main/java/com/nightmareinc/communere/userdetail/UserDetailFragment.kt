@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.nightmareinc.communere.R
 import com.nightmareinc.communere.database.UserDatabase
 import com.nightmareinc.communere.databinding.FragmentUserDetailBinding
+import com.nightmareinc.communere.repository.UserRepository
 import com.nightmareinc.communere.signup.SignupFragmentDirections
 
 class UserDetailFragment : Fragment() {
@@ -30,7 +31,7 @@ class UserDetailFragment : Fragment() {
 
         val dataSource = UserDatabase.getInstance(application).userDatabaseDao
 
-        val viewModelFactory = UserDetailViewModelFactory(arguments.userEvent, dataSource)
+        val viewModelFactory = UserDetailViewModelFactory(arguments.userEvent, UserRepository(dataSource))
 
         val userDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(UserDetailViewModel::class.java)
 

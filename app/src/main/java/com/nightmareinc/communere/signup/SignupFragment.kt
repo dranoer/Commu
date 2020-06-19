@@ -17,6 +17,7 @@ import com.nightmareinc.communere.UserEvent
 import com.nightmareinc.communere.database.UserDatabase
 import com.nightmareinc.communere.databinding.FragmentSignupBinding
 import com.nightmareinc.communere.login.LoginFragmentDirections
+import com.nightmareinc.communere.repository.UserRepository
 import kotlinx.android.synthetic.main.fragment_signup.*
 
 class SignupFragment : Fragment() {
@@ -31,7 +32,7 @@ class SignupFragment : Fragment() {
 
         val dataSource = UserDatabase.getInstance(application).userDatabaseDao
 
-        val viewModelFactory = SignupViewModelFactory(dataSource)
+        val viewModelFactory = SignupViewModelFactory(UserRepository(dataSource))
 
         val signupViewModel = ViewModelProviders.of(this, viewModelFactory).get(SignupViewModel::class.java)
 
