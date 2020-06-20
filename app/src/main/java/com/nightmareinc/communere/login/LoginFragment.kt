@@ -40,7 +40,9 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             loginViewModel.onLoginButtonClick(
                 binding.usernameText.text.toString(),
+//                binding.usernameText.text.toString(),
                 binding.passwordText.text.toString()
+//                binding.passwordText.text.toString()
             )
         }
 
