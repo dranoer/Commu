@@ -13,6 +13,7 @@
     <dimen name="text_16">16sp</dimen>
 
     <!--Image Sizes-->
+    <dimen name="size_50">50dp</dimen>
     <dimen name="size_70">70dp</dimen>
 
 </resources>

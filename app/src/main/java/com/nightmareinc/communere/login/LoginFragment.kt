@@ -40,9 +40,7 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             loginViewModel.onLoginButtonClick(
                 binding.usernameText.text.toString(),
-//                binding.usernameText.text.toString(),
                 binding.passwordText.text.toString()
-//                binding.passwordText.text.toString()
             )
         }
 
@@ -51,7 +49,6 @@ class LoginFragment : Fragment() {
                 LoginFragmentDirections.actionLoginFragmentToMainFragment(it))
         })
 
-        ///////////////////////////////////////////////////////////////
 
         binding.signupButton.setOnClickListener {
             loginViewModel.onSignupButtonClick()

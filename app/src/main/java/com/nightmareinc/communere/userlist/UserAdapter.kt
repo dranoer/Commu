@@ -16,14 +16,13 @@ class UserAdapter(val clickListener: UserListener) : ListAdapter<User, UserAdapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position)!!, clickListener)
-//        val item = getItem(position)
-//        holder.bind(item)
     }
 
     class ViewHolder private constructor(val binding: ListItemUserBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: User, clickListener: UserListener) {
             binding.user = item
+            binding.userName.text = item.fullname
             binding.clickListener = clickListener
             binding.executePendingBindings()
         }

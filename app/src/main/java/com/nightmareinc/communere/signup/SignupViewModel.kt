@@ -1,6 +1,5 @@
 package com.nightmareinc.communere.signup
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nightmareinc.communere.UserAuthInfo
 import com.nightmareinc.communere.database.User
@@ -21,7 +20,6 @@ class SignupViewModel (var userRepository: UserRepository) : ViewModel() {
     }
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-    private var user = MutableLiveData<User?>()
 
     val navigateToUserDetail = SingleLiveData.SingleLiveEvent<UserAuthInfo>()
     fun onSignupButtonClick(name: String, email: String, password: String) {

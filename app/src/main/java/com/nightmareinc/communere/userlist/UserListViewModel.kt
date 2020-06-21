@@ -18,32 +18,26 @@ class UserListViewModel(val userAuthInfo: UserAuthInfo,
     private val uiScope = CoroutineScope(Dispatchers.Main + vieModelJob)
     val viewStateLiveData = MutableLiveData<UserDetailViewState>()
     var usersLiveData: LiveData<List<User>> = MutableLiveData()
-//            = userRepository.getAllUsers()
-
-//    lateinit var userList: LiveData<List<User>>
 
     init {
-//        uiScope.launch {
-//            var userList = userRepository.getAllUsers()
             usersLiveData = userRepository.getAllUsers()
-
-//            val state = UserDetailViewState(user, userEvent.role == 1)
-//            viewStateLiveData.value = state
-//        }
     }
 
-    /*private suspend fun getAllUsers(){
-         withContext(Dispatchers.IO) {
-            database.getAllUsers()
-        }
-    }*/
-
-    ///
-//    private val _navigateToDetail = MutableLiveData<Long>()
     val navigateToUserDetail = SingleLiveData.SingleLiveEvent<UserAuthInfo>()
 
     fun onUserClicked(id: Long) {
         navigateToUserDetail.value = UserAuthInfo(Role.ADMIN, id)
+    }
+
+    fun deleteSelectedUser(id: Long) {
+        uiScope.launch {
+            userRepository.deleteSelectedUser(id)
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        vieModelJob.cancel()
     }
 
 }

@@ -35,6 +35,14 @@ class UserRepository(val database: UserDatabaseDao) {
         database.clear()
     }
 
+    suspend fun deleteSelectedUser(userId: Long) {
+        database.clearSelectedUser(userId)
+    }
+
+    suspend fun updateUser(user: User) {
+        database.update(user)
+    }
+
     fun getAllUsers() = database.getAllUsers()
 
 }

@@ -45,11 +45,6 @@ class UserListFragment : Fragment() {
         })
         binding.userList.adapter = adapter
 
-        // Get user list
-//        userListViewModel.viewStateLiveData.observe(this, Observer {
-//            render(it)
-//        })
-
         userListViewModel.usersLiveData.observe(this, Observer {
             it?.let {
                 adapter.submitList(it)
@@ -65,20 +60,5 @@ class UserListFragment : Fragment() {
 
         return binding.root
     }
-
-    /*fun render(userDetailViewState: UserDetailViewState) {
-
-//        binding..text = userDetailViewState.user.fullname
-        binding.usernameText.setText(userDetailViewState.user.fullname)
-        binding.passwordText.setText(userDetailViewState.user.email)
-
-        if (userDetailViewState.isAdmin) {
-            binding.deleteButton.visibility = View.GONE
-            binding.updateButton.visibility = View.GONE
-        } else {
-            binding.deleteButton.visibility = View.VISIBLE
-            binding.updateButton.visibility = View.VISIBLE
-        }
-    }*/
 
 }

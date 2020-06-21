@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,7 +13,6 @@ import com.nightmareinc.communere.R
 import com.nightmareinc.communere.database.UserDatabase
 import com.nightmareinc.communere.databinding.FragmentUserDetailBinding
 import com.nightmareinc.communere.repository.UserRepository
-import com.nightmareinc.communere.signup.SignupFragmentDirections
 
 class UserDetailFragment : Fragment() {
 
@@ -53,6 +51,11 @@ class UserDetailFragment : Fragment() {
                 UserDetailFragmentDirections.actionUserDetailFragmentToSignupFragment()
             )
         })
+
+        // Update current user
+        binding.updateButton.setOnClickListener {
+            userDetailViewModel.updateUser()
+        }
 
 
         return binding.root
