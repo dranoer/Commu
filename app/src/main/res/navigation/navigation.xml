@@ -15,7 +15,7 @@
             app:destination="@id/signup_fragment" />
         <action
             android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/main_fragment" />
+            app:destination="@id/user_list_fragment" />
     </fragment>
     <fragment
         android:id="@+id/signup_fragment"
@@ -23,14 +23,28 @@
         android:label="SignupFragment">
         <action
             android:id="@+id/action_signupFragment_to_mainFragment"
-            app:destination="@id/main_fragment" />
+            app:destination="@id/user_detail_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/main_fragment"
-        android:name="com.nightmareinc.communere.main.MainFragment"
-        android:label="MainFragment">
+        android:id="@+id/user_detail_fragment"
+        android:name="com.nightmareinc.communere.userdetail.UserDetailFragment"
+        android:label="UserDetailFragment">
         <argument
-            android:name="role"
-            app:argType="boolean" />
+            android:name="userAuthInfo"
+            app:argType="com.nightmareinc.communere.UserAuthInfo" />
+        <action
+            android:id="@+id/action_user_detail_fragment_to_signup_fragment"
+            app:destination="@id/signup_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/user_list_fragment"
+        android:name="com.nightmareinc.communere.userlist.UserListFragment"
+        android:label="UserListFragment">
+        <argument
+            android:name="userAuthInfo"
+            app:argType="com.nightmareinc.communere.UserAuthInfo" />
+        <action
+            android:id="@+id/action_user_list_fragment_to_user_detail_fragment"
+            app:destination="@id/user_detail_fragment" />
     </fragment>
 </navigation>

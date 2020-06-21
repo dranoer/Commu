@@ -10,16 +10,22 @@ import androidx.room.Update
 interface UserDatabaseDao {
 
     @Insert
-    fun insert(user: User)
+    suspend fun insert(user: User): Long
 
     @Update
-    fun update(user: User)
+    suspend fun update(user: User)
 
     @Query("SELECT * FROM user_table WHERE userId = :key")
-    fun get(key: Long): User
+    suspend fun get(key: Long): User
+
+    @Query("SELECT * FROM user_table WHERE email = :email and password = :password ")
+    suspend fun checkCredential(email: String, password: String): User?
 
     @Query("DELETE FROM user_table")
-    fun clear()
+    suspend fun clear()
+
+    @Query("DELETE FROM user_table WHERE userId = :id")
+    suspend fun clearSelectedUser(id: Long)
 
     @Query("SELECT * FROM user_table ORDER BY userId DESC")
     fun getAllUsers(): LiveData<List<User>>
